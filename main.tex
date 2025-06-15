@@ -1,0 +1,154 @@
+% !TeX root = main.tex
+\input{setup/format.tex}
+\let\cleardoublepage\clearpage
+
+
+% ==== 标题、作者、日期信息 ====
+\title{\yihao{标题}\\[20ex]}
+\author{
+    \erhao{作者}
+    \thanks{电子邮件: XXXX@mail.nwpu.edu.cn}\\[2ex]
+    \sanhao XX大学XX学院\\[2ex]
+}
+% \date{\sanhao\today}
+\date{\sanhao XXXX年X月X日}
+
+
+\begin{document}
+\renewcommand{\thefootnote}{}  % 禁用脚注序号
+\xiaosi\song  % 定义默认字体
+\renewcommand{\d}{\mathrm{d}}  % 微分正体
+\frontmatter % 前置部分页码采用罗马数字
+
+% 封面页（不分页，不显示页码）
+\begingroup
+\let\newpage\relax  % 防止 \maketitle 后自动换页
+\thispagestyle{empty}  % 不显示页码
+\maketitle
+\endgroup
+
+\newpage
+\setcounter{page}{1}  % 第二页从页码1开始
+
+
+% {{{ ==== 摘要 ====
+\phantomsection  % 生成锚点，供目录和超链接引用
+\chapter*{摘~~~~要}
+\markboth{摘~~~~要}{摘~~~~要}
+\addcontentsline{toc}{chapter}{摘~~~~要}  % 添加到目录
+摘要内容……
+
+\vspace{1em}
+\noindent {\hei 关键词：} \quad 词1，词2，词3，词4，词5
+
+\newpage
+% }}}
+
+
+% ==== 目录 ====
+\phantomsection
+\addcontentsline{toc}{chapter}{目~~~~录}
+\tableofcontents
+
+\mainmatter  % 主体部分页码采用阿拉伯数字
+
+
+% ==== 正文章节 ====
+% {{{ chapter1
+\chapter{我是第1章}
+第一章内容。
+
+\begin{equation}
+\left( \frac{\delta_n}{\delta_{no}} \right)^2 + \left( \frac{\delta_t}{\delta_{so}} \right)^2 = 1
+\label{eq:damage_initiation}
+\end{equation}
+其中，$\delta_n$ 与 $\delta_t$ 分别为法向和切向开裂位移，$\delta_{no}$ 与 $\delta_{so}$ 为对应的初始损伤位移阈值。
+
+假设切向位移可表示为 $\delta_t = \beta \delta_n$，其中
+\begin{equation}
+\beta = \frac{\sqrt{\delta_{t1}^2 + \delta_{t2}^2}}{\delta_n}
+\label{eq:beta_def}
+\end{equation}
+代入式 \eqref{eq:damage_initiation} 可得：
+\begin{equation}
+\left( \frac{\delta_n}{\delta_{no}} \right)^2 + \left( \frac{\beta \delta_n}{\delta_{so}} \right)^2 = 1
+\end{equation}
+整理得到：
+\begin{equation}
+\delta_n^2 \left( \frac{1}{\delta_{no}^2} + \frac{\beta^2}{\delta_{so}^2} \right) = 1
+\quad \Rightarrow \quad
+\delta_n^2 = \frac{1}{\frac{1}{\delta_{no}^2} + \frac{\beta^2}{\delta_{so}^2}} = \frac{\delta_{no}^2 \delta_{so}^2}{\delta_{so}^2 + \delta_{no}^2 \beta^2}
+\end{equation}
+
+此时的等效初始位移 $\delta_{mo}$ 可表示为：
+\begin{equation}
+\delta_{mo}^2 = \delta_n^2 + \delta_t^2 = \delta_n^2(1 + \beta^2)
+\end{equation}
+最终得到混合模式下的等效初始位移为：
+\begin{equation}
+\delta_{mo} = \delta_{no} \delta_{so} \sqrt{ \frac{1 + \beta^2}{\delta_{so}^2 + \delta_{no}^2 \beta^2} }
+\label{eq:delta_mo}
+\end{equation}
+
+\section{一章一节}
+内容……
+
+\begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+    \centering %图片居中
+    \includegraphics[width=0.5\textwidth]{example1.jpeg} %插入图片，[]中设置图片大小，{}中是图片文件名
+    \caption{Main name} %最终文档中希望显示的图片标题
+    \label{Fig.main1} %用于文内引用的标签
+    \end{figure}
+% }}}
+
+% {{{ chapter2
+\chapter{我是第2章}
+\section{二章一节}
+文献\cite{li2023deep1,li2023deep2,li2023deep3},真的\cite{li2023deep1}叙述了……
+
+图\ref{Fig.sub.1}，图\ref{Fig.sub.2}，图\ref{Fig.sub.3}如下所示：
+\begin{figure}[H]
+\centering  %图片全局居中
+\subfigure[name1]{
+\label{Fig.sub.1}
+\includegraphics[width=0.3\textwidth]{example1.jpeg}}
+\subfigure[name2]{
+\label{Fig.sub.2}
+\includegraphics[width=0.3\textwidth]{example2.jpeg}}
+\subfigure[name3]{
+\label{Fig.sub.3}
+\includegraphics[width=0.3\textwidth]{example3.jpeg}}
+\caption{Main name}
+\label{Fig.main2}
+\end{figure}
+
+这是一个三线表。
+\begin{table}[hbt!]
+    \small
+    \caption{\label{Tab5:table_aging_ASTM} 力学试验标准及试件尺寸}
+    \centering
+    \begin{tabularx}{\textwidth}{XXX c}
+    \toprule
+    试验 & 参考标准 & 试件尺寸(mm) & 加载速率(mm/min) \\
+    \midrule
+    弯曲试验     & ASTM-D7264 & $\text{95.0}\times \text{10.0}\times \text{2.0}$ & 1.0\\
+    短梁剪切试验  & ASTM-D2344 & $\text{6.0}\times \text{4.0}\times \text{2.0}$ & 1.0\\
+    双悬臂梁试验  & ASTM-D5528 & $\text{150.0}\times \text{25.0}\times \text{2.0}$ & 2.0\\
+    \bottomrule
+    \end{tabularx}
+\end{table}
+% }}}
+
+% ==== 参考文献 ====
+\begingroup
+  % \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{参考文献}
+  \bibliographystyle{references/gbt7714-2005}
+  \xiaosi\song
+  \setlength{\bibsep}{5pt}
+  \setstretch{1.15}
+  \bibliography{references/Library}
+\endgroup
+
+\end{document}

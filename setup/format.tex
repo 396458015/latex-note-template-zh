@@ -1,0 +1,205 @@
+\documentclass[12pt,a4paper,openany,twoside,below,section]{book}
+
+% ======= 页面和版面设置 =======
+\usepackage{geometry}   % 设置页边距
+\geometry{paperwidth=210mm,paperheight=297mm,%
+  left=2.5cm,right=2.5cm,top=2.54cm,bottom=2.54cm}
+\topmargin=-10.4mm
+\headheight=17pt
+\footskip=8mm
+\headsep=5mm
+
+\usepackage[below]{placeins}  % 防止浮动体跨越章节
+\usepackage{float}  % 图片浮动位置控制
+
+% ======= 图形和表格 =======
+\usepackage{graphicx}  % 插图
+\graphicspath{{figures/}}  % 预定义图片路径
+\usepackage{subfigure}  % 多子图支持
+\usepackage{rotating}  % 旋转图形
+\usepackage{tabularx}  % 表格扩展
+\usepackage{multirow}  % 表格多行合并
+\usepackage{setspace}  % 行距设置
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{booktabs}  % 绘制三线表
+\setlength\heavyrulewidth{0.35ex}
+
+% ======= 文字编码和字体 =======
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text} % 支持连字符等特殊符号
+\usepackage{xeCJK}  % 中文支持
+\usepackage{ctex}
+
+% 中文字体配置
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Courier New}
+\setCJKmainfont[AutoFakeBold=true]{SimSun}  % 宋体
+\setCJKsansfont{SimHei}
+\setCJKmonofont{FangSong}
+
+\setCJKfamilyfont{hei}{SimHei}               % 黑体
+\setCJKfamilyfont{kai}{KaiTi}                % 楷体
+\setCJKfamilyfont{song}[AutoFakeBold]{SimSun}  % 宋体
+\setCJKfamilyfont{fang}{FangSong}            % 仿宋体
+\setCJKfamilyfont{enroman}{Times New Roman}
+
+\newcommand{\hei}{\CJKfamily{hei}}
+\newcommand{\kai}{\CJKfamily{kai}}
+\newcommand{\song}{\CJKfamily{song}}
+\newcommand{\fang}{\CJKfamily{fang}}
+\newcommand*{\mytimes}{\CJKfamily{enroman}}
+
+\newfontfamily\codefont{Courier New}
+\newfontfamily\pagella{Times New Roman}
+
+% ======= 字号、行距定义 =======
+\newcommand{\yihao}{\fontsize{28pt}{36pt}\selectfont}     % 一号
+\newcommand{\erhao}{\fontsize{21pt}{28pt}\selectfont}     % 二号
+\newcommand{\sanhao}{\fontsize{16pt}{20pt}\selectfont}    % 三号
+\newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}   % 小三
+\newcommand{\sihao}{\fontsize{14pt}{20pt}\selectfont}     % 四号
+\newcommand{\xiaosi}{\fontsize{12pt}{20pt}\selectfont}    % 小四
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont} % 五号
+\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}      % 小五
+
+\renewcommand{\baselinestretch}{1.0}  % 将行距缩放系数设为1，避免中文默认1.3导致的行距放大，使设定的20pt行距实际生效（否则为26pt），需配合 \selectfont 使用
+
+% ======= 颜色和超链接 =======
+\usepackage{xcolor}
+\usepackage{color}  % 也可删除，xcolor已包含
+\usepackage[unicode]{hyperref}
+\hypersetup{
+  hidelinks,
+  CJKbookmarks=true,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  colorlinks=true,
+  pdfborder=001,
+  citecolor=blue,
+  linkcolor=blue,
+  anchorcolor=green,
+  urlcolor=blue,
+  pdfcreator={XeTeX,XeCJK}
+}
+
+\usepackage{caption}
+%按NWPU标准, 图表标题字号为五号
+\DeclareCaptionFont{tiZhuZiTi}{\fontsize{10.5}{10.5}\mdseries}
+% 按NWPU标准, 设置题注分隔符
+\DeclareCaptionLabelSeparator{tiZhuFenGe}{\hspace{0.5em}}
+%重新定义caption的属性
+\captionsetup{font=tiZhuZiTi, labelsep=tiZhuFenGe, skip=10pt}
+
+% ======= 参考文献 =======
+\usepackage[numbers,super,square,comma,sort&compress]{natbib}
+
+% ======= 代码、下划线等特殊格式 =======
+\usepackage{listings}  % 代码插入
+\usepackage{ulem}      % 下划线、波浪线等
+
+% ======= 画图 =======
+\usepackage{tikz}
+
+% ======= 其他 =======
+\usepackage{wallpaper}  % 背景图片
+\addtolength{\wpYoffset}{8.0cm}
+\usepackage{url}
+\usepackage{epsfig}     % eps图像支持
+\usepackage{flafter}    % 浮动体显示顺序
+\usepackage{calc}       % 计算
+\usepackage{units}      % 单位宏包
+
+% ======= 数学符号 =======
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{bm}  % 粗斜体
+
+% ======= 行距与段落设置 =======
+% \linespread{1.4}
+% \setlength{\parskip}{0.5\baselineskip}
+\sloppy
+
+% 段落首行缩进2个中文字符
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\setlength{\parindent}{2em}
+
+% ======= 页眉页脚 =======
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}  % 清空默认
+\fancyfoot[C]{\thepage}  % 页脚居中显示页码
+\renewcommand{\headrulewidth}{0pt}  % 去掉页眉线
+\renewcommand{\footrulewidth}{0pt}  % 去掉页脚线
+
+% ======= 图表编号按章节 =======
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+\counterwithin{equation}{chapter}
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+
+% ======= 章节标题格式 =======
+\setcounter{secnumdepth}{4}
+\input{setup/gb_452.cpx}
+\renewcommand\chaptername{\CJKprechaptername\CJKthechapter\CJKchaptername}
+
+
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[hang]
+    {\filcenter \hei \fontsize{16pt}{20pt}\selectfont}
+    {\hei \fontsize{16pt}{20pt}\selectfont{\chaptertitlename}}
+    {16pt}{}
+\titlespacing{\chapter}{0pt}{-2pt}{14pt}
+
+
+\titleformat{\section}[hang]{\hei \sihao}
+  {\sihao \thesection}{0.5em}{}
+\titlespacing{\section}{0pt}{10pt}{0em}
+
+\titleformat{\subsection}[hang]{\hei \xiaosi}
+  {\xiaosi \thesubsection}{0.5em}{}
+\titlespacing{\subsection}{0pt}{10pt}{0em}
+
+% ======= 目录格式修改 =======
+\usepackage{etoolbox}
+\usepackage{titletoc}
+
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{目~~~~录}
+\dottedcontents{chapter}[0.0em]{}{0.0em}{5pt}
+\dottedcontents{section}[1.16cm]{}{1.8em}{5pt}
+\dottedcontents{subsection}[2.00cm]{}{2.7em}{5pt}
+
+\raggedbottom
+% 调整列表环境的垂直间距和水平缩进
+% labelindent=26pt， 两个小四字符是2*12pt=24pt，再修正2pt以求避免编号数字有突出感。下同。
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt, topsep=0pt, partopsep=0pt, parsep=0pt,
+                    labelindent=26pt, leftmargin=*, align=left}
+\setlist[itemize]{itemsep=2pt, topsep=2pt, partopsep=2pt, parsep=2pt}
+                %  labelindent=26pt, leftmargin=*, align=left}
+\setlist[description]{itemsep=0pt, topsep=0pt, partopsep=0pt, parsep=0pt,
+                      labelindent=26pt, leftmargin=*, align=left}
+
+% 设置中文风格的章节引用
+\newcommand{\chref}[1]{\CJKnumber{\ref{#1}}}
+% 调整中文括号的间距
+\newcommand{\KH}[1]{\!\!（#1）\!\!}
+% 重设表格的纵向尺寸
+\renewcommand\arraystretch{1.25}
+
+% ======= 注释掉的示例标题格式 =======
+% \title{\yihao{这里是大标题啊}}
+% \author{\xiaoerhao{作者姓名}\footnote{电子邮件: ***@***.com，学号: ***}\\[2ex]
+% \sanhao 东南大学网络空间安全学院\\[2ex]
+% }
+% \date{\sanhao\today}
+
