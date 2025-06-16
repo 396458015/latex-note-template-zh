@@ -25,7 +25,8 @@
 latex-note-template-zh/
 ├── main.tex                  # 主文件
 ├── setup/
-│   └── format.tex            # 模板格式设置（字体、行距、标题等）
+│   ├── format.tex            # 模板格式设置（字体、行距、标题等）
+│   └── gb_452.cpx            # 中文 CJK 字体编码映射文件，用于支持特定 GB 编码的字体显示
 ├── figures/                  # 图片目录（默认路径）
 ├── references/
 │   ├── gbt7714-2005.bst      # 参考文献样式（国标）
