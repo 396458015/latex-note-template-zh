@@ -2,8 +2,7 @@
 \input{setup/format.tex}
 \let\cleardoublepage\clearpage
 
-
-% ==== 标题、作者、日期信息 ====
+% {{{标题、作者、日期信息
 \title{\yihao{标题}\\[20ex]}
 \author{
     \erhao{作者}
@@ -12,15 +11,17 @@
 }
 % \date{\sanhao\today}
 \date{\sanhao XXXX年X月X日}
+% }}}
 
-
+% {{{ setting
 \begin{document}
 \renewcommand{\thefootnote}{}  % 禁用脚注序号
 \xiaosi\song  % 定义默认字体
 \renewcommand{\d}{\mathrm{d}}  % 微分正体
 \frontmatter % 前置部分页码采用罗马数字
+% }}}
 
-% 封面页（不分页，不显示页码）
+% {{{封面页（不分页，不显示页码）
 \begingroup
 \let\newpage\relax  % 防止 \maketitle 后自动换页
 \thispagestyle{empty}  % 不显示页码
@@ -29,14 +30,14 @@
 
 \newpage
 \setcounter{page}{1}  % 第二页从页码1开始
+% }}}
 
-
-% {{{ ==== 摘要 ====
+% {{{ 摘要
 \phantomsection  % 生成锚点，供目录和超链接引用
 \chapter*{摘~~~~要}
 \markboth{摘~~~~要}{摘~~~~要}
 \addcontentsline{toc}{chapter}{摘~~~~要}  % 添加到目录
-摘要内容……
+{摘要内容……}
 
 \vspace{1em}
 \noindent {\hei 关键词：} \quad 词1，词2，词3，词4，词5
@@ -44,14 +45,13 @@
 \newpage
 % }}}
 
-
-% ==== 目录 ====
+% {{{ 目录
 \phantomsection
 \addcontentsline{toc}{chapter}{目~~~~录}
 \tableofcontents
 
 \mainmatter  % 主体部分页码采用阿拉伯数字
-
+% }}}
 
 % ==== 正文章节 ====
 % {{{ chapter1
@@ -139,7 +139,7 @@
 \end{table}
 % }}}
 
-% ==== 参考文献 ====
+% {{{ 参考文献
 \begingroup
   % \cleardoublepage
   \phantomsection
@@ -150,5 +150,6 @@
   \setstretch{1.15}
   \bibliography{references/Library}
 \endgroup
+% }}}
 
 \end{document}
